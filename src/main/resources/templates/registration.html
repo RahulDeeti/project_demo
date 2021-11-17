@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+    <head>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous">
+
+            </script>
+
+        <style>
+                    body {
+                            background-color: lightgrey;
+                         }
+            </style>
+
+    </head>
+
+    <body class="hold-transition register-page">
+<div class="register-box" style="margin: auto; max-width:600px;  margin-top: 50pt;">
+    <div class="card" >
+        <div class="card-body register-card-body"  >
+            <p class="login-box-msg"><h4>Register your account</h4></p>
+
+            <form action="#" th:action="@{/register}" th:object="${userData}" method="post">
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                </div>
+                <div th:switch="${message}">
+                    <div th:case="'idUsed'" class="alert alert-warning">
+                        <strong>User Id is already used</strong>
+                    </div>
+                    <div th:case="'emailUsed'" class="alert alert-warning">
+                        <strong>Email Id is already used</strong>
+                    </div>
+                </div>
+                <div th:switch="${message}">
+                    <div th:case="'Success'" class="alert alert-success">
+                        <strong>Registration is succesfull</strong>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control"  th:field="*{firstName}" placeholder="First Name" th:errorclass="is-invalid">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control"  th:field="*{lastName}" placeholder="Last Name" th:errorclass="is-invalid">
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" th:field="*{email}" placeholder="Email" th:errorclass="is-invalid">
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" th:field="*{userId}" placeholder="userId" th:errorclass="is-invalid">
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control"
+                           th:field="*{password}"
+                           placeholder="Password"
+                           th:errorclass="is-invalid">
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control"
+                           th:field="*{confirmPassword}"
+                           placeholder="Retype password">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Register" class="btn btn-primary btn-lg btn-block"/>
+                </div>
+                <br>
+                <div th:switch="${message}">
+                    <div th:case="'Success'">
+                        <div><a th:href="@{/}" class="link-success">Go to home page</a></div>
+                        <br>
+                        <div><a th:href="@{/login}" class="link-info">Go login page</a></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.form-box -->
+    </div><!-- /.card -->
+</div>
+</body>
+</html>

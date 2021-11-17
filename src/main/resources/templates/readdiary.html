@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous">
+        </script>
+    </head>
+
+    <body>
+        <h1>Read your previous diary</h1>
+        <hr>
+        <div style="width:60%;  margin-left:200px; margin-right:200px">
+            <form th:action="@{/api/readdiary}" th:object="${diaryData}" method="post">
+                <div>
+                    <input type="date" th:field="*{onDay}">
+                    <input type="submit" value="search for diary" class="btn btn-primary">
+                    <br><br>
+                    <textarea th:field="*{diaryNote}" cols="90" rows="15"></textarea>
+                </div>
+            </form>
+            <a th:href="@{/user}" ><button class="btn btn-primary">Go to user Home</button></a>
+        </div>
+    </body>
+</html>
