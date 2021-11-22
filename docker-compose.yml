@@ -1,0 +1,13 @@
+mysql-standalone:
+  image: mysql:8.0.26
+  environment:
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=test
+    - MYSQL_USER=rahul
+    - MYSQL_PASSWORD=password
+users-mysql:
+  image: users-mysql
+  ports:
+    - 8082:8082
+  links:
+    - mysql-standalone
